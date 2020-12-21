@@ -1,0 +1,120 @@
+<!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2020 Angelo Hugo Cavalcanti de Carvalho Silva
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add contact</title>
+    <link
+      href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <link href="css/background.css" rel="stylesheet" />
+    <link href="css/header.css" rel="stylesheet" />
+    <link href="css/addContacts.css" rel="stylesheet" />
+    <link href="css/footer.css" rel="stylesheet" />
+  </head>
+
+  <body id="page_body">
+    <div id="include_header"></div>
+
+    <div class="container">
+      <div id="div_row_add_contacts_form" class="row">
+        <div>
+          <h2>Add contact</h2>
+
+          <hr />
+
+          <form class="text-center" action="addContact">
+            <div class="form-floating mb-3">
+              <input
+                id="name_input"
+                type="text"
+                class="form-control"
+                placeholder="Name"
+                name="name"
+                required
+              />
+              <label for="name_input">Name</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                id="email_input"
+                type="email"
+                class="form-control"
+                placeholder="e-Mail"
+                name="email"
+                required
+              />
+              <label for="email_input">e-Mail</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                id="address_input"
+                type="text"
+                class="form-control"
+                placeholder="Address"
+                name="address"
+                required
+              />
+              <label for="address_input">Address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                id="birthdate_input"
+                type="text"
+                class="form-control"
+                placeholder="Birthdate"
+                name="birthdate"
+                required
+              />
+              <label for="birthdate_input">Birthdate</label>
+            </div>
+            <button type="submit" class="btn btn-secondary btn-lg">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="include_footer"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/importHeader.js"></script>
+    <script src="js/importFooter.js"></script>
+    <script src="js/calendar.js"></script>
+  </body>
+</html>
