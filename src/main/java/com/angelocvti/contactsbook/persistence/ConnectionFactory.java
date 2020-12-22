@@ -35,9 +35,9 @@ public enum ConnectionFactory {
 
   public Connection getConnection() {
     try {
-      Class.forName("org.postgresql.Driver");
-      return DriverManager.getConnection("jdbc:postgresql://localhost/agenda", "postgres", "admin");
-    } catch (SQLException | ClassNotFoundException e) {
+      String dbUrl = System.getenv("JDBC_DATABASE_URL");
+      return DriverManager.getConnection(dbUrl);
+    } catch (SQLException e) {
       throw new ConnectionFactoryException(e);
     }
   }
