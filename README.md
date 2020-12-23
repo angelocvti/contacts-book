@@ -29,6 +29,3 @@ Project created to learn more about Servlets, JSP and JDBC. It is a system of ad
 
 https://ac-contacts-book.herokuapp.com/
 
-<p align="center">
-  <img src="sample.png" />
-</p>
