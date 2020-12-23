@@ -22,6 +22,7 @@ ___
   <img src="https://img.shields.io/badge/-CSS-1572B6?style=flat-square&logo=css3" />
   <img src="https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
   <img src="https://img.shields.io/badge/-Bootstrap-563D7C?style=flat-square&logo=bootstrap" />
+  <img src="https://img.shields.io/badge/-Heroku-430098?style=flat-square&logo=heroku" />
 </p>
 
 Project created to learn more about Servlets, JSP and JDBC. It is a system of administration of contact list with web user interface that allows to perform CRUD operations.
