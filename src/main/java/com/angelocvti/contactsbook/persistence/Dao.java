@@ -24,7 +24,6 @@
 
 package com.angelocvti.contactsbook.persistence;
 
-import com.angelocvti.contactsbook.util.Email;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +31,7 @@ import java.util.Optional;
 public interface Dao<T> {
   Optional<T> findById(Long id);
 
-  Optional<T> findByEmail(Email email);
+  Optional<T> findByEmail(String email);
 
   List<T> findAll();
 

@@ -28,7 +28,6 @@ import com.angelocvti.contactsbook.exceptions.ContactNotFoundException;
 import com.angelocvti.contactsbook.exceptions.DaoException;
 import com.angelocvti.contactsbook.exceptions.DuplicateEmailException;
 import com.angelocvti.contactsbook.model.Contact;
-import com.angelocvti.contactsbook.util.Email;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -47,6 +46,7 @@ import java.util.Optional;
  * @author Angelo Cavalcanti
  */
 public final class ContactDao implements Dao<Contact> {
+
   private final Connection connection;
 
   private ContactDao(Connection connection) {
@@ -74,7 +74,7 @@ public final class ContactDao implements Dao<Contact> {
         contact =
             Contact.builder()
                 .withName(resultSet.getString("name"))
-                .withEmail(Email.of(resultSet.getString("email")))
+                .withEmail(resultSet.getString("email"))
                 .withAddress(resultSet.getString("address"))
                 .withBirthdate(calendar)
                 .build();
@@ -90,19 +90,19 @@ public final class ContactDao implements Dao<Contact> {
   /**
    * Reads contact data with the given email.
    *
-   * @param email {@link com.angelocvti.contactsbook.util.Email Email} instance with the email value
-   *     from the column 'email' of table 'contacts'.
+   * @param email {@link java.lang.String String} instance with the email value from the column
+   *     'email' of table 'contacts'.
    * @return {@link com.angelocvti.contactsbook.model.Contact Contact} instance (if the contact with
    *     the given email is found, null otherwise) wrapped in an {@link java.util.Optional
    *     Optional}.
    * @author Angelo Cavalcanti
    */
-  public Optional<Contact> findByEmail(final Email email) {
+  public Optional<Contact> findByEmail(final String email) {
     Contact contact = null;
     try {
       PreparedStatement preparedStatement =
           this.connection.prepareStatement("SELECT * FROM contacts WHERE email = ?");
-      preparedStatement.setString(1, email.toString());
+      preparedStatement.setString(1, email);
       ResultSet resultSet = preparedStatement.executeQuery();
       while (resultSet.next()) {
         Calendar calendar = Calendar.getInstance();
@@ -111,7 +111,7 @@ public final class ContactDao implements Dao<Contact> {
             Contact.builder()
                 .withId(Long.valueOf(resultSet.getString("id")))
                 .withName(resultSet.getString("name"))
-                .withEmail(Email.of(resultSet.getString("email")))
+                .withEmail(resultSet.getString("email"))
                 .withAddress(resultSet.getString("address"))
                 .withBirthdate(calendar)
                 .build();
@@ -145,7 +145,7 @@ public final class ContactDao implements Dao<Contact> {
             Contact.builder()
                 .withId(resultSet.getLong("id"))
                 .withName(resultSet.getString("name"))
-                .withEmail(Email.of(resultSet.getString("email")))
+                .withEmail(resultSet.getString("email"))
                 .withAddress(resultSet.getString("address"))
                 .withBirthdate(calendar)
                 .build();
@@ -164,7 +164,7 @@ public final class ContactDao implements Dao<Contact> {
    *
    * @param contact {@link com.angelocvti.contactsbook.model.Contact Contact} instance containing
    *     the contact data.
-   * @exception DuplicateEmailException if the e-Mail is already in use by another contact.
+   * @throws DuplicateEmailException if the e-Mail is already in use by another contact.
    * @author Angelo Cavalcanti
    */
   public void insert(final Contact contact) {
@@ -172,7 +172,7 @@ public final class ContactDao implements Dao<Contact> {
 
     if (contactOptional.isPresent()) {
       throw new DuplicateEmailException(
-          "The email: " + contact.getEmail().toString() + " is being used by another contact.");
+          "The email: " + contact.getEmail() + " is being used by another contact.");
     }
 
     try {
@@ -180,7 +180,7 @@ public final class ContactDao implements Dao<Contact> {
           connection.prepareStatement(
               "INSERT INTO contacts (name, email ,address, birthdate) VALUES (?,?,?,?)");
       preparedStatement.setString(1, contact.getName());
-      preparedStatement.setString(2, contact.getEmail().toString());
+      preparedStatement.setString(2, contact.getEmail());
       preparedStatement.setString(3, contact.getAddress());
       preparedStatement.setDate(4, new Date(contact.getBirthdate().getTimeInMillis()));
       preparedStatement.execute();
@@ -195,8 +195,8 @@ public final class ContactDao implements Dao<Contact> {
    *
    * @param contact {@link com.angelocvti.contactsbook.model.Contact Contact} instance containing
    *     the contact data.
-   * @exception DuplicateEmailException if the e-Mail is already in use by another contact.
    * @return id assigned to the contact.
+   * @throws DuplicateEmailException if the e-Mail is already in use by another contact.
    * @author Angelo Cavalcanti
    */
   public Long insertAndGetId(final Contact contact) {
@@ -204,7 +204,7 @@ public final class ContactDao implements Dao<Contact> {
 
     if (contactOptional.isPresent()) {
       throw new DuplicateEmailException(
-          "The email: " + contact.getEmail().toString() + " is being used by another contact.");
+          "The email: " + contact.getEmail() + " is being used by another contact.");
     }
 
     Long id;
@@ -215,7 +215,7 @@ public final class ContactDao implements Dao<Contact> {
               "INSERT INTO contacts (name, email ,address, birthdate) VALUES (?,?,?,?)",
               Statement.RETURN_GENERATED_KEYS);
       preparedStatement.setString(1, contact.getName());
-      preparedStatement.setString(2, contact.getEmail().toString());
+      preparedStatement.setString(2, contact.getEmail());
       preparedStatement.setString(3, contact.getAddress());
       preparedStatement.setDate(4, new Date(contact.getBirthdate().getTimeInMillis()));
       preparedStatement.execute();
@@ -238,14 +238,14 @@ public final class ContactDao implements Dao<Contact> {
    * @param id The id of the contact that will be updated (the primary key of table 'contacts').
    * @param contact {@link com.angelocvti.contactsbook.model.Contact Contact} instance containing
    *     the contact new data.
-   * @exception ContactNotFoundException if no contacts were found with the given id.
-   * @exception DuplicateEmailException if the e-Mail is already in use by another contact.
+   * @throws ContactNotFoundException if no contacts were found with the given id.
+   * @throws DuplicateEmailException if the e-Mail is already in use by another contact.
    * @author Angelo Cavalcanti
    */
   public void update(final Long id, final Contact contact) {
     Optional<Contact> contactOptional = findById(id);
 
-    if (contactOptional.isEmpty()) {
+    if (!contactOptional.isPresent()) {
       throw new ContactNotFoundException("No contact was found.");
     } else {
       Optional<Contact> persistedContactWithSameEmail = findByEmail(contact.getEmail());
@@ -261,7 +261,7 @@ public final class ContactDao implements Dao<Contact> {
           this.connection.prepareStatement(
               "UPDATE contacts SET name = ?, email = ?, address = ?, birthdate = ? WHERE id = ?");
       preparedStatement.setString(1, contact.getName());
-      preparedStatement.setString(2, contact.getEmail().toString());
+      preparedStatement.setString(2, contact.getEmail());
       preparedStatement.setString(3, contact.getAddress());
       preparedStatement.setDate(4, new Date(contact.getBirthdate().getTimeInMillis()));
       preparedStatement.setLong(5, id);
@@ -276,13 +276,13 @@ public final class ContactDao implements Dao<Contact> {
    * Delete the contact data.
    *
    * @param id The primary key of table 'contacts'.
-   * @exception ContactNotFoundException if no contacts were found with the given id.
+   * @throws ContactNotFoundException if no contacts were found with the given id.
    * @author Angelo Cavalcanti
    */
   public void delete(final Long id) {
     Optional<Contact> contactOptional = findById(id);
 
-    if (contactOptional.isEmpty()) {
+    if (!contactOptional.isPresent()) {
       throw new ContactNotFoundException("No contact was found.");
     }
 
@@ -302,6 +302,7 @@ public final class ContactDao implements Dao<Contact> {
   }
 
   public static class ContactDaoBuilder {
+
     private Connection connection;
 
     private ContactDaoBuilder() {}

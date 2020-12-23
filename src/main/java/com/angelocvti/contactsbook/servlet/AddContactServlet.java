@@ -27,7 +27,6 @@ package com.angelocvti.contactsbook.servlet;
 import com.angelocvti.contactsbook.model.Contact;
 import com.angelocvti.contactsbook.persistence.ConnectionFactory;
 import com.angelocvti.contactsbook.persistence.ContactDao;
-import com.angelocvti.contactsbook.util.Email;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -62,7 +61,7 @@ public class AddContactServlet extends HttpServlet {
         .insert(
             Contact.builder()
                 .withName(request.getParameter("name"))
-                .withEmail(Email.of(request.getParameter("email")))
+                .withEmail(request.getParameter("email"))
                 .withAddress(request.getParameter("address"))
                 .withBirthdate(birthdate)
                 .build());

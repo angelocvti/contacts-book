@@ -27,7 +27,6 @@ package com.angelocvti.contactsbook.servlet;
 import com.angelocvti.contactsbook.model.Contact;
 import com.angelocvti.contactsbook.persistence.ConnectionFactory;
 import com.angelocvti.contactsbook.persistence.ContactDao;
-import com.angelocvti.contactsbook.util.Email;
 import java.io.IOException;
 import java.lang.reflect.MalformedParametersException;
 import java.text.ParseException;
@@ -64,7 +63,7 @@ public class UpdateContactServlet extends HttpServlet {
             Long.valueOf(request.getParameter("id")),
             Contact.builder()
                 .withName(request.getParameter("name"))
-                .withEmail(Email.of(request.getParameter("email")))
+                .withEmail(request.getParameter("email"))
                 .withAddress(request.getParameter("address"))
                 .withBirthdate(birthdate)
                 .build());

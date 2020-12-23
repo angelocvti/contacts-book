@@ -43,7 +43,6 @@
             crossorigin="anonymous"
     />
     <link href="css/background.css" rel="stylesheet"/>
-    <link href="css/header.css" rel="stylesheet"/>
     <link href="css/listContacts.css" rel="stylesheet"/>
     <link href="css/footer.css" rel="stylesheet"/>
 </head>
