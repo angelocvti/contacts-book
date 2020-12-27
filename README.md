@@ -4,8 +4,11 @@
   <a>
     <img src="https://visitor-badge.glitch.me/badge?page_id=angelocvti.contacts-book" />
   </a>
+  <a href="https://travis-ci.org/github/angelocvti/contacts-book">
+    <img src="https://travis-ci.org/angelocvti/contacts-book.svg?branch=main">
+  </a>
   <a href="https://snyk.io/test/github/angelocvti/contacts-book?targetFile=pom.xml">
-    <img src="https://snyk.io/test/github/angelocvti/contacts-book/badge.svg?targetFile=pom.xml" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/angelocvti/contacts-book?targetFile=pom.xml" style="max-width:100%;">
+    <img src="https://snyk.io/test/github/angelocvti/contacts-book/badge.svg?targetFile=pom.xml">
   </a>
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg">
