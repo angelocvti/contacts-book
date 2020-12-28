@@ -18,13 +18,15 @@
 ___
 
 <p align="center">
-  <img src="https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java" />
+  <img src="https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java&logoColor=black" />
   <img src="https://img.shields.io/badge/-Maven-C71A36?style=flat-square&logo=apache-maven" />
   <img src="https://img.shields.io/badge/-PostgreSQL-336791?style=flat-square&logo=postgresql" />
-  <img src="https://img.shields.io/badge/-HTML-E34F26?style=flat-square&logo=html5&logoColor=white" />
-  <img src="https://img.shields.io/badge/-CSS-1572B6?style=flat-square&logo=css3" />
+  <img src="https://img.shields.io/badge/-HTML-E34F26?style=flat-square&logo=html5&logoColor=black" />
+  <img src="https://img.shields.io/badge/-CSS-1572B6?style=flat-square&logo=css3&logoColor=black" />
   <img src="https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
-  <img src="https://img.shields.io/badge/-Bootstrap-563D7C?style=flat-square&logo=bootstrap" />
+  <img src="https://img.shields.io/badge/-Bootstrap-563D7C?style=flat-square&logo=bootstrap&logoColor=white" />
+  <img src="https://img.shields.io/badge/-Snyk-4C4A73?style=flat-square&logo=snyk&logoColor=white" />
+  <img src="https://img.shields.io/badge/-Travis%20CI-3EAAAF?style=flat-square&logo=travis" />
   <img src="https://img.shields.io/badge/-Heroku-430098?style=flat-square&logo=heroku" />
 </p>
 
